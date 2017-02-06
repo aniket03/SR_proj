@@ -28,7 +28,12 @@ For just in case things don't work as they should
 
 Then copy the haproxy.cfg file in this repo to /etc/haproxy/
 
-Thats it and launch ttwo terminals with virtual env in both:
+Then open the port which shall be used by load balancer to accept requests:
+$ firewall-cmd --permanent --add-port=5500/tcp
+$ firewall-cmd --reload
+
+
+Thats it and launch two terminals with virtual env in both:
 
 TO launch celery-worker:
 $ celery -A SR_proj worker -l info
