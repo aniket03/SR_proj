@@ -10,6 +10,9 @@ In file set_ser.py change hostname of each rabbitMQ node to ur computer's userna
 [like mine was ANIKET]
 
 Then run:
+1st. Install Soldier
+	sudo pip install soldier
+And then:
 sudo python set_ser.py     
 
 Above command will set up a cluster of rabbitMQ nodes.
