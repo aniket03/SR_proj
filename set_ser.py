@@ -9,5 +9,8 @@ soldier.run("sudo rabbitmqctl -n rb2 start_app").output
 soldier.run(" sudo rabbitmqctl -n rb1 set_policy ha-all \"\" \'{\"ha-mode\":\"all\",\"ha-sync-mode\":\"automatic\"}\'").output
 
 
-##soldier.run(rabbitmqctl -n rb1 set_policy ha-all "" '{"ha-mode":"all","ha-sync-mode":"automatic"}')
-##Above line must be checked
+## Some notes:
+##Cluster of rabbitMQ nodes set
+##HA policy set
+## Erlang cookie will as it is be same if we follow AWS guide to form nodes
+## HAProxy if used can be configured here
