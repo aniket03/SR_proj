@@ -4,7 +4,7 @@
 import paramiko
 
 hostnames = [
-	'ec2-54-173-2-90.compute-1.amazonaws.com'		##New one
+	'ec2-54-173-2-90.compute-1.amazonaws.com'		##Your instance's public name
 	
 ]
 ## since gonna be same for each host
@@ -49,73 +49,6 @@ for host in hostnames:
 	for s in shell_lines:
 		print s
 	ssh.close()
-
-'''
-##To set open ports 5672 and 15672 on each node
-for host in hostnames:
-	print "open ports 5672 and 15672", host
-	## To establish ssh session with the reqd server
-	ssh = paramiko.SSHClient()
-	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-	ssh.connect(hostname=host, username='ubuntu', pkey=k)
-	transport = ssh.get_transport()
-	session = transport.open_session()
-	session.set_combine_stderr(True)
-	session.get_pty()
-
-	## To execute the commands
-	commands =[
-		'sudo -i apt-get install firewalld -y',
-		'sudo -i firewall-cmd --permanent --add-port=5672/tcp',
-		'sudo -i firewall-cmd --reload',
-	]
-
-	## To make a single command
-	single_command = ""
-	for i in range(len(commands)):
-		if i < len(commands)-1:
-			single_command=single_command + (commands[i]+"\n")
-		else:
-			single_command=single_command + (commands[i])
-
-	print single_command
-	session.exec_command(single_command)
-	stdin = session.makefile('wb', -1)
-	stdout = session.makefile('rb', -1)
-	shell_lines = stdout.readlines()
-	for s in shell_lines:
-		print s
-	ssh.close()
-
-master = 'ec2-184-72-152-226.compute-1.amazonaws.com'
-slaves = [
-	'ec2-184-72-152-226.compute-1.amazonaws.com'
-]
-
-for slave in slaves:
-	print "Setting RabbitMQ on host", host
-	## To establish ssh session with the reqd server
-	ssh = paramiko.SSHClient()
-	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-	ssh.connect(hostname=host, username='ubuntu', pkey=k)
-	transport = ssh.get_transport()
-	session = transport.open_session()
-	session.set_combine_stderr(True)
-	session.get_pty()
-
-	session.exec_command('sudo rabbitmqctl join_cluster rabbit@'+master)
-	stdin = session.makefile('wb', -1)
-	stdout = session.makefile('rb', -1)
-	shell_lines = stdout.readlines()
-	for s in shell_lines:
-		print s
-	ssh.close()
-
-
-
-
-
-'''
 
 '''
 Chain of Events
