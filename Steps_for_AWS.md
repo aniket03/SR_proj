@@ -1,5 +1,6 @@
-Note:  Before running the python scripts mentioned here make sure you have 
-paramiko 2.1.1 installed. To install the same try:  sudo pip install paramiko --upgrade
+#Steps to setup RabbitMQ servers cluster using EC2
+
+###Note:  Before running the python scripts mentioned here make sure you have paramiko 2.1.1 installed. To install the same try:  sudo pip install paramiko --upgrade
 
 1. Create a new security key which shall be same for all the AWS instances. Let this be named "rabbitmqkey". Any description can be added.
 Also change permission of the key file eg : chmod 400 rabbitmqkey.pem
