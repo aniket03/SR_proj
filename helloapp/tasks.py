@@ -4,11 +4,12 @@ import time
 
 @shared_task
 def add(x,y):
-	time.sleep(20)
+	time.sleep(200)
 	return x+y
 
 @shared_task
 def mul(x,y):
+	time.sleep(200)
 	return x*y
 
 @shared_task

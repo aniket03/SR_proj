@@ -1,0 +1,15 @@
+Chain of Events
+1. pip install paramiko --upgrade
+Error: ImportError: No module named packaging.version
+Resolved: sudo pip install packaging
+2. Again tried 1
+Error: ImportError: No module named appdirs
+Resolved: sudo pip install appdirs
+3. Again tried 1
+This time it worked
+
+4. Now sudo apt-get install rabbitmq-server not working
+Error: E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
+
+5. Try This
+stdin, stdout, stderr = client.exec_command(command,  get_pty=True)

@@ -124,6 +124,11 @@ STATIC_URL = '/static/'
 
 CELERY_BROKER_URL = ["pyamqp://guest:guest@localhost:5500//"]
 
-CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ROUTES = {
+        "helloapp.tasks.add": {"queue":"addq"},
+        "helloapp.tasks.mul": {"queue":"mulq"},
+}
+
+##CELERY_RESULT_BACKEND = 'django-db'
 
 ##CELERY_RESULT_BACKEND = 'django-cache'
