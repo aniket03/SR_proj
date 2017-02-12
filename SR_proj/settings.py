@@ -122,12 +122,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CELERY_BROKER_URL = ["pyamqp://guest:guest@localhost:5500//"]
+CELERY_BROKER_URL = ["pyamqp://aniket:aniket1234@HeyRabbit-845272074.us-east-1.elb.amazonaws.com:5672//"]
 
-CELERY_ROUTES = {
-        "helloapp.tasks.add": {"queue":"addq"},
-        "helloapp.tasks.mul": {"queue":"mulq"},
-}
+# CELERY_ROUTES = {
+#         "helloapp.tasks.add": {"queue":"addq"},
+#         "helloapp.tasks.mul": {"queue":"mulq"},
+# }
 
 ##CELERY_RESULT_BACKEND = 'django-db'
 

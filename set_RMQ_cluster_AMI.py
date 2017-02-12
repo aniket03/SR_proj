@@ -59,3 +59,16 @@ shell_lines = ssh_session(master,command)
 for s in shell_lines:
 	print s
 
+# To make new rabbitmq user and provide permissions
+RMQ_user_name="aniket"
+RMQ_password="aniket1234"
+for host in hostnames:
+	commands =[
+		'sudo -i rabbitmqctl add_user '+RMQ_user_name+' '+RMQ_password,
+		'sudo -i rabbitmqctl set_user_tags '+RMQ_user_name+ ' administrator',
+		'sudo -i rabbitmqctl set_permissions -p / '+RMQ_user_name+' ".*" ".*" ".*"',
+	]
+	single_command = "\n".join(commands)
+	shell_lines = ssh_session(host,single_command)
+	for s in shell_lines:
+		print s
