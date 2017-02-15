@@ -9,7 +9,7 @@ hostnames = [
 ]
 # since gonna be same for each host
 
-path_key="/home/aniket/Downloads/rabbitmqkey.pem"
+path_ssh_key="/home/aniket/Downloads/rabbitmqkey.pem"
 path_ssl_keys='/home/aniket/rmq-keys/keys-server'
 path_config_file = '/home/aniket/SR_proj/rabbitmq.config'
 pub_key = paramiko.RSAKey.from_private_key_file(path_key)
