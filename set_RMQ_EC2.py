@@ -1,11 +1,11 @@
-#Should run on local machine
+# Should run on local machine
 # And ssh into your AWS accounts then start rabbitmq-server
 
 import paramiko
 import soldier
 
 hostnames = [
-	''		#Your instance's public name
+	''		# Your instance's public name
 ]
 # since gonna be same for each host
 
@@ -15,7 +15,7 @@ path_config_file = '/home/aniket/SR_proj/rabbitmq.config'
 pub_key = paramiko.RSAKey.from_private_key_file(path_key)
 
 #Function returns output on remote shell
-def ssh_session(host,command):
+def ssh_session(host, command):
 	# To establish ssh session with the reqd server
 	ssh_client = paramiko.SSHClient()
 	ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -43,7 +43,7 @@ for host in hostnames:
 		'sudo -i rabbitmqctl cluster_status',
 	]
 	single_command = "\n".join(commands)
-	shell_lines = ssh_session(host,single_command)
+	shell_lines = ssh_session(host, single_command)
 	for s in shell_lines:
 		print s
 
