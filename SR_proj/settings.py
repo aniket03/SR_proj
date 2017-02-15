@@ -124,7 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # CELERY SETTINGS SECTION
-BROKER_URL = ["pyamqp://aniket:khelshuru1234@NewRabbitLB-1862013528.us-east-1.elb.amazonaws.com:5671//"]
+BROKER_URL = [""]
 
 #BROKER_LOGIN_METHOD = "EXTERNAL"
 BROKER_USE_SSL = {
