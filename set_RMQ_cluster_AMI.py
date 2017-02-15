@@ -1,8 +1,8 @@
 import paramiko
 
-master = 'ec2-54-173-2-90.compute-1.amazonaws.com'
+master = ''
 slaves = [
-	'ec2-54-234-142-144.compute-1.amazonaws.com'
+	''
 ]
 
 hostnames = [master]+slaves  #to form hostnames list
@@ -23,7 +23,6 @@ def ssh_session(host,command):
 	session.set_combine_stderr(True)
 	session.get_pty()
 
-	# To get host name
 	session.exec_command(command)
 	stdin = session.makefile('wb', -1)
 	stdout = session.makefile('rb', -1)
@@ -58,17 +57,3 @@ command = " sudo rabbitmqctl set_policy ha-all \"\" \'{\"ha-mode\":\"all\",\"ha-
 shell_lines = ssh_session(master,command)
 for s in shell_lines:
 	print s
-
-# To make new rabbitmq user and provide permissions
-RMQ_user_name="aniket"
-RMQ_password="aniket1234"
-for host in hostnames:
-	commands =[
-		'sudo -i rabbitmqctl add_user '+RMQ_user_name+' '+RMQ_password,
-		'sudo -i rabbitmqctl set_user_tags '+RMQ_user_name+ ' administrator',
-		'sudo -i rabbitmqctl set_permissions -p / '+RMQ_user_name+' ".*" ".*" ".*"',
-	]
-	single_command = "\n".join(commands)
-	shell_lines = ssh_session(host,single_command)
-	for s in shell_lines:
-		print s

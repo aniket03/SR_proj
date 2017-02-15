@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+from kombu import Queue
+import ssl
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -122,13 +123,38 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CELERY_BROKER_URL = ["pyamqp://aniket:aniket1234@HeyRabbit-845272074.us-east-1.elb.amazonaws.com:5672//"]
+# CELERY SETTINGS SECTION
+BROKER_URL = ["pyamqp://aniket:khelshuru1234@NewRabbitLB-1862013528.us-east-1.elb.amazonaws.com:5671//"]
 
-# CELERY_ROUTES = {
-#         "helloapp.tasks.add": {"queue":"addq"},
-#         "helloapp.tasks.mul": {"queue":"mulq"},
-# }
+#BROKER_LOGIN_METHOD = "EXTERNAL"
+BROKER_USE_SSL = {
+	'keyfile': '/home/aniket/keys-client/key.pem',
+	'certfile': '/home/aniket/keys-client/cert.pem',
+	'ca_certs': '/home/aniket/keys-client/cacert.pem',
+	'cert_reqs': ssl.CERT_REQUIRED
+}
 
-##CELERY_RESULT_BACKEND = 'django-db'
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_ROUTING_KEY = 'default'
+# DEFAULT_QUEUE = "celery"
+# CELERY_ADD_QUEUE = "addq"
+# CELERY_MUL_QUEUE = "mulq"
 
-##CELERY_RESULT_BACKEND = 'django-cache'
+CELERY_QUEUES = (
+	Queue('default', routing_key='default'),
+	Queue('addq', routing_key='addq'),
+	Queue('mulq', routing_key='mulq'),
+)
+
+CELERY_ROUTES = (
+	{'helloapp.tasks.add': {'queue': 'addq'}},
+	{'helloapp.tasks.mul': {'queue': 'mulq'}},
+)
+
+# SECURITY_KEY = '/etc/rmq-ssl/key.pem'
+# SECURITY_CERTIFICATE ='/etc/rmq-ssl/cert.pem'
+# SECURITY_CERT_STORE ='/etc/rmq-ssl/cacert.pem'
+
+# CELERY_RESULT_BACKEND = 'django-db'
+
+# CELERY_RESULT_BACKEND = 'django-cache'

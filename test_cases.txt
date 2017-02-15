@@ -1,0 +1,2 @@
+Test1:
+Send 100 or even 1000 tasks to both servers. Shut down 1 . Check queue mirroring is working fine or not.
