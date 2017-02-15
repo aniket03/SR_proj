@@ -7,13 +7,13 @@ slaves = [
 
 hostnames = [master]+slaves  #to form hostnames list
 
-path_key= "/home/aniket/Downloads/rabbitmqkey.pem"  #AWS security key
+path_key = "/home/aniket/Downloads/rabbitmqkey.pem"  #AWS security key
 
 private_ip = {}	# Dict to store private ip of each host since gonna be same for each host
 pub_key = paramiko.RSAKey.from_private_key_file(path_key)
 
 #Function returns output on remote shell
-def ssh_session(host,command):
+def ssh_session(host, command):
 	# To establish ssh session with the reqd server
 	ssh_client = paramiko.SSHClient()
 	ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -53,7 +53,7 @@ for slave in slaves:
 		print s
 
 #From master node to set HA policy 
-command = " sudo rabbitmqctl set_policy ha-all \"\" \'{\"ha-mode\":\"all\",\"ha-sync-mode\":\"automatic\"}\'"
+command = "sudo rabbitmqctl set_policy ha-all \"\" \'{\"ha-mode\":\"all\",\"ha-sync-mode\":\"automatic\"}\'"
 shell_lines = ssh_session(master,command)
 for s in shell_lines:
 	print s
