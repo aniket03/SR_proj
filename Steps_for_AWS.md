@@ -19,9 +19,9 @@ Custom TCP Rule    TCP            55672       0.0.0.0/0
 
 3. Create anew AWS EC2 instance
 	1. I used Ubuntu 16.04 server with t2.micro instance type
-	2. Open set_ser_AWS.py and replace public DNS or instance's name with your instance's 	name in the "hostnames" list.
-	2. Just below that also replace the private key with the one for your system.
-	3. Run set_ser_AWS.py  to build rabbitMQ server up and running on this instance.
+	2. Open set_RMQ_EC2.py and replace public DNS or instance's name with your instance's name in the "hostnames" list.
+	2. In path_key give the path to the security key used to create your instance.
+	3. Run set_RMQ_EC2.py to build rabbitMQ server up and running on this instance.
 
 4. Create an image of your AWS EC2 instance.
 
